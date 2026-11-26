@@ -3,194 +3,296 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>陈列断货智能替代落地实施方案</title>
+<title>门店陈列管理优化方案</title>
 <style>
 :root {
-  --fs-h1: 22px;
-  --fs-h2: 17px;
+  --fs-h1: 24px;
+  --fs-h2: 18px;
   --fs-h3: 15px;
   --fs-body: 15px;
   --fs-small: 13px;
   --ff-heading: "Microsoft YaHei", "SimHei", sans-serif;
   --ff-body: "Microsoft YaHei", "SimSun", sans-serif;
-  --ff-mono: "Consolas", "Courier New", monospace;
-  --lh-body: 1.8;
-  --fw-bold: 700;
+  --lh-body: 1.85;
   --color-primary: #1565C0;
   --color-primary-deep: #0D2B52;
   --color-text: #212121;
-  --color-muted: #616161;
+  --color-muted: #5F6B7A;
   --color-border: #D6DEE8;
   --color-bg: #F5F7FA;
   --color-callout-bg: #EEF4FB;
-  --color-warning-bg: #FFF8E1;
-  --color-warning-border: #F9A825;
-  --spacing-paragraph: 0.8em;
-  --spacing-section: 2.2em;
-  --spacing-block: 1.2em;
-  --page-width: 860px;
+  --color-warn-bg: #FFF8E1;
+  --color-warn-border: #F9A825;
 }
 * { box-sizing: border-box; }
-body { max-width: var(--page-width); margin: 0 auto; padding: 40px 24px 80px; font-family: var(--ff-body); font-size: var(--fs-body); color: var(--color-text); line-height: var(--lh-body); background: #FFFFFF; }
-.doc-header { border-bottom: 3px solid var(--color-primary); padding-bottom: 18px; margin-bottom: var(--spacing-section); }
-.doc-title { font-family: var(--ff-heading); font-size: 30px; font-weight: var(--fw-bold); color: var(--color-primary); margin: 0 0 10px 0; }
-.doc-goal { background: var(--color-callout-bg); border-left: 3px solid var(--color-primary); padding: 12px 16px; font-size: var(--fs-small); color: var(--color-text); margin: 0; }
-.doc-goal strong { color: var(--color-primary); }
-h1 { font-family: var(--ff-heading); font-size: var(--fs-h1); font-weight: var(--fw-bold); color: var(--color-primary); margin: var(--spacing-section) 0 var(--spacing-block); }
-h2 { font-family: var(--ff-heading); font-size: var(--fs-h2); font-weight: var(--fw-bold); color: var(--color-text); margin: var(--spacing-block) 0 0.6em; }
-p { margin: 0 0 var(--spacing-paragraph); text-align: justify; }
-ul.plain { margin: 0 0 var(--spacing-paragraph); padding-left: 1.8em; }
-ul.plain li { margin-bottom: 0.45em; text-align: justify; }
-ol.steps { margin: 0 0 var(--spacing-paragraph); padding-left: 1.8em; }
-ol.steps li { margin-bottom: 0.45em; text-align: justify; }
-table.flow { width: 100%; border-collapse: collapse; margin: var(--spacing-block) 0 1.6em; }
-table.flow td { background: var(--color-primary-deep); color: #FFFFFF; text-align: center; padding: 14px 12px; font-family: var(--ff-mono); font-size: var(--fs-body); }
-table.flow td.small { font-size: var(--fs-small); color: #C9D6EA; }
-table.data { width: 100%; border-collapse: collapse; margin: var(--spacing-block) 0 1.6em; }
-table.data caption { font-family: var(--ff-heading); font-size: var(--fs-small); color: var(--color-muted); caption-side: top; text-align: left; padding-bottom: 8px; }
-table.data th { background: var(--color-primary); color: #FFFFFF; font-family: var(--ff-heading); font-size: var(--fs-small); font-weight: var(--fw-bold); padding: 9px 12px; border: 1px solid var(--color-border); text-align: left; }
-table.data td { font-size: var(--fs-body); padding: 9px 12px; border: 1px solid var(--color-border); vertical-align: top; text-align: left; }
-table.data tr:nth-child(even) td { background: var(--color-bg); }
-td.score { text-align: center; font-family: var(--ff-heading); font-weight: var(--fw-bold); color: var(--color-primary); white-space: nowrap; }
-p.callout { border-left: 3px solid var(--color-primary); background: var(--color-callout-bg); padding: 10px 14px; margin: var(--spacing-block) 0; }
-p.warn { border-left: 3px solid var(--color-warning-border); background: var(--color-warning-bg); padding: 10px 14px; margin: var(--spacing-block) 0; }
-.footnote { margin-top: var(--spacing-section); font-size: var(--fs-small); color: var(--color-muted); border-top: 1px solid var(--color-border); padding-top: 14px; }
+body {
+  margin: 0;
+  background: #E8EDF3;
+  color: var(--color-text);
+  font-family: var(--ff-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+}
+.page {
+  max-width: 860px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  padding: 48px 56px 60px;
+  box-shadow: 0 2px 14px rgba(13,43,82,0.10);
+}
+h1 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h1);
+  color: var(--color-primary-deep);
+  text-align: center;
+  margin: 0 0 6px;
+}
+.doc-sub {
+  text-align: center;
+  color: var(--color-muted);
+  font-size: var(--fs-small);
+  margin-bottom: 30px;
+}
+h2 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h2);
+  color: var(--color-primary-deep);
+  border-left: 5px solid var(--color-primary);
+  padding-left: 12px;
+  margin: 40px 0 14px;
+}
+h3 {
+  font-family: var(--ff-heading);
+  font-size: var(--fs-h3);
+  color: var(--color-primary);
+  margin: 24px 0 8px;
+}
+p { margin: 0 0 0.8em; }
+ul, ol { margin: 0 0 0.8em; padding-left: 1.6em; }
+li { margin-bottom: 0.4em; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  font-size: var(--fs-body);
+}
+th {
+  background: var(--color-primary-deep);
+  color: #FFFFFF;
+  padding: 10px 12px;
+  text-align: left;
+  font-family: var(--ff-heading);
+  font-weight: 600;
+  border: 1px solid var(--color-primary-deep);
+}
+td {
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  vertical-align: top;
+}
+tbody tr:nth-child(even) td { background: #F6F9FC; }
+.callout {
+  background: var(--color-callout-bg);
+  border-left: 4px solid var(--color-primary);
+  padding: 14px 18px;
+  margin: 14px 0 18px;
+  border-radius: 0 6px 6px 0;
+}
+.callout strong { color: var(--color-primary-deep); }
+.warn {
+  background: var(--color-warn-bg);
+  border-left: 4px solid var(--color-warn-border);
+  padding: 14px 18px;
+  margin: 14px 0 18px;
+  border-radius: 0 6px 6px 0;
+}
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+  margin: 16px 0 20px;
+}
+.flow .step {
+  flex: 1 1 130px;
+  background: var(--color-primary-deep);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 12px 10px;
+  border-radius: 6px;
+  font-family: var(--ff-heading);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.flow .step b { font-size: var(--fs-body); display: block; margin-bottom: 2px; }
+.flow .arrow {
+  align-self: center;
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 18px;
+  flex: 0 0 auto;
+}
+.tag {
+  display: inline-block;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-size: var(--fs-small);
+  padding: 1px 10px;
+  border-radius: 10px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.foot-note {
+  color: var(--color-muted);
+  font-size: var(--fs-small);
+  margin-top: 30px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+@media (max-width: 700px) {
+  .page { padding: 28px 20px; }
+  .flow { flex-direction: column; }
+  .flow .arrow { transform: rotate(90deg); align-self: center; }
+}
 </style>
 </head>
 <body>
+<div class="page">
 
-<header class="doc-header">
-  <p class="doc-title">陈列断货智能替代落地实施方案</p>
-  <p class="doc-goal"><strong>目标：</strong>断货商品所在陈列位，系统自动推荐可替换商品，门店照单执行；替代全程可追溯，原品到货自动恢复。本文只讲模型思路与落地路径，取数/SQL 不在本文范围。</p>
-</header>
+<h1>门店陈列管理优化方案</h1>
+<div class="doc-sub">职责清晰 · 分类管理 · 缺货智能替换 · 陈列如实反映销售</div>
 
-<h1>一、问题与目标</h1>
-<p><strong>现状痛点：</strong></p>
-<ol class="steps">
-  <li>陈列商品断货 → 货架空置，销售机会流失（放满陈列可提升约 24% 销售）</li>
-  <li>人工随便拿货补位 → 补了什么没人知道、系统不记录</li>
-  <li>补的商品与陈列模板设计意图不符 → 破坏价格带梯度、品类逻辑、视觉陈列</li>
-</ol>
-<p><strong>目标一句话：</strong>让"断货 → 补位 → 追溯 → 恢复"这条链路自动化、可配置、可度量。</p>
-
-<h1>二、模型总思路（四句话）</h1>
-<ul class="plain">
-  <li><strong>用消费者决策树（CDT）定义"像不像"：</strong>替代品必须与原商品在同一条决策分支上（同小类 → 用途/口味 → 价格带），顾客拿不准时才会因"看起来差不多"而成交。</li>
-  <li><strong>用共购行为定义"相近"：</strong>"口味/用途相近"不靠人工判断，靠小票共购——买 A 的人还买了同小类、同价格带、同用途的 B，A 和 B 就互替。不限品类、不限品牌。</li>
-  <li><strong>用配置表承载规则：</strong>所有阈值和权重策略化，运营改配置即改策略，不碰代码。</li>
-  <li><strong>用登记闭环保证可追溯：</strong>每次替代落系统，每日快照 diff 兜底识别，原品到货自动触发恢复。</li>
+<h2>一、为什么要做这件事</h2>
+<p>当前门店货架陈列变化频繁，系统里的陈列图与货架上的实际情况长期对不上，<strong>陈列已经不能真实反映商品的销售情况</strong>。</p>
+<p>集团要求门店按统一陈列图陈列并上报，但遇到商品缺货时，门店不能让货架空着、必须卖货，只能自行找商品顶上——替换了什么、放在哪、什么时候换的，都没有记录。于是形成了两头为难的现状：</p>
+<div class="warn">
+<strong>矛盾点：</strong>集团要"按统一陈列图陈列上报"，门店要"缺货了也不能不上架卖货"。门店随手替换，既破坏了统一陈列图的严肃性，又让集团看不到货架的真实情况。
+</div>
+<p><strong>问题的根源不在门店，而在三件事没做到位：</strong></p>
+<ul>
+<li><strong>职责不清</strong>——哪些陈列谁说了算，三个部门之间没有明确边界；</li>
+<li><strong>缺货时没有统一规则</strong>——换什么商品全凭门店自己判断，换得对不对无从衡量；</li>
+<li><strong>替换动作不留痕</strong>——换了没有登记、没人知道，陈列图与实际越走越远。</li>
 </ul>
-<table class="flow">
-  <tr><td>断货判定 → 候选池（硬过滤）→ CDT 打分 → 三路径执行 → 登记闭环</td></tr>
-  <tr><td class="small">原品到货，自动恢复原陈列 ◄──────────────────────┘</td></tr>
+<p>本方案的目标：<strong>让陈列始终反映商品实际情况，让"统一管控"和"灵活卖货"不再矛盾。</strong></p>
+
+<h2>二、职责清晰化：三个部门各管什么</h2>
+<table>
+<thead><tr><th style="width:16%">部门</th><th style="width:44%">负责的陈列事项</th><th>要达到的目标</th></tr></thead>
+<tbody>
+<tr><td><strong>采购部</strong></td><td>新店开业陈列策划；门店年度性、大幅度的陈列调整</td><td>统一规划，从源头把陈列设计规范做好</td></tr>
+<tr><td><strong>营运部</strong></td><td>常态化陈列、背柜的日常管理</td><td>按集团统一陈列图执行，管控住主销商品</td></tr>
+<tr><td><strong>门店</strong></td><td>HPP 位、动销快的位置的陈列调整</td><td>快速响应销售变化，调整后及时拍照上传陈列图</td></tr>
+</tbody>
 </table>
+<div class="callout">
+一句话分工：<strong>采购管"从无到有"（新店、大改），营运管"日常不变"，门店管"快变的位置"。</strong>各管一段，互不越位，矛盾自然消解。
+</div>
 
-<h1>三、模型怎么"想"——单个断货位的决策推演</h1>
-<p>以一个真实场景走一遍（商品名为示意）。</p>
-
-<h2>第 0 步 · 发现断货</h2>
-<p>快照比对：陈列位（店 20208 / 货架 1 / 1 层 3 列）昨日摆的是"海蓝之谜紧致焕颜精华晚霜"，今日库存检查发现店面仓 0、监管仓 0 → 判定"断货"（临断且在途 1 天内到货 → 直接挂缺货牌，到此结束）。</p>
-
-<h2>第 1 步 · 圈定候选池（硬条件，缺一不可）</h2>
-<p>同店在售、同小类（面霜）、非赠品非滞销、可用库存够摆满这个位的陈列面。先做硬过滤，把几千个 SKU 缩到几十个。</p>
-
-<h2>第 2 步 · 按 CDT 打分（谁最像它）</h2>
-<table class="data">
-  <caption>表 1　CDT 打分维度与示例判定（合计满分 100 分）</caption>
-  <thead><tr><th>维度</th><th>分值</th><th>示例判定</th></tr></thead>
-  <tbody>
-    <tr><td>行为互替</td><td class="score">35</td><td>查互替分中间表——买海蓝之谜面霜的人，小票里还买了谁？若"莱珀妮面霜"共购 lift=2.8 且价格差 15% → 满分</td></tr>
-    <tr><td>用途相同</td><td class="score">15</td><td>同细类"修护面霜" → 满分</td></tr>
-    <tr><td>价格带</td><td class="score">20</td><td>候选价差 ±20% 内 → 满分（顾客预算校验是最后一关）</td></tr>
-    <tr><td>规格相似</td><td class="score">15</td><td>同为 30ml 级 → 满分</td></tr>
-    <tr><td>动销热度</td><td class="score">10</td><td>该品近 30 天同店销量分位 85% → 高分</td></tr>
-    <tr><td>品牌加成</td><td class="score">5</td><td>跨品牌 → 0 分（品牌不是前提，只加成）</td></tr>
-  </tbody>
+<h2>三、四类陈列，分类管理</h2>
+<p>把全部门店的所有陈列位归成四类，每一类有明确的责任方、管理方式和要求：</p>
+<table>
+<thead><tr><th style="width:8%">类型</th><th style="width:26%">陈列范围</th><th style="width:14%">责任方</th><th style="width:26%">管理方式</th><th>关键要求</th></tr></thead>
+<tbody>
+<tr>
+<td><strong>第一类</strong></td>
+<td>动销频繁的位置、地堆位</td>
+<td>门店</td>
+<td>门店自主调整，<strong>及时拍照上传</strong>陈列图</td>
+<td>快——跟着销售走，但必须有图可查</td>
+</tr>
+<tr>
+<td><strong>第二类</strong></td>
+<td>品牌类陈列位、热销位</td>
+<td>系统<br>（拱北、横琴、大桥三家大门店先行）</td>
+<td><strong>系统智能替换</strong>，不需要审核</td>
+<td>快速响应，陈列自动更新</td>
+</tr>
+<tr>
+<td><strong>第三类</strong></td>
+<td>常态化陈列位、背柜</td>
+<td>营运部</td>
+<td>按集团统一陈列图管理</td>
+<td>稳——保证集团主销商品的管控</td>
+</tr>
+<tr>
+<td><strong>第四类</strong></td>
+<td>新店陈列策划、时间跨度大的门店大调整</td>
+<td>采购部</td>
+<td>采购统一规划陈列</td>
+<td>规范——从源头保证设计质量</td>
+</tr>
+</tbody>
 </table>
-<p>示例候选合计约 95 分。</p>
+<p>四类陈列覆盖了门店所有场景：卖得快的门店说了算（但要拍照上报），品牌和热销的系统自动管，常态的集团统一管，开新店采购统一规划。<strong>陈列管理的每一种情况都有明确的章法。</strong></p>
 
-<h2>第 3 步 · 三路径分流</h2>
-<ul class="plain">
-  <li>得分 ≥ 70 → <strong>同类替代</strong>：推荐单给出 Top3，店员选一个上架</li>
-  <li>40–70 → <strong>空间延展</strong>：不换品，让旁边畅销品扩排面填满</li>
-  <li>得分低于 40 或无候选 → <strong>缺货标识</strong>：挂"此货暂缺"，绝不硬补</li>
+<h2>四、智能替换规则（针对第二类陈列）</h2>
+<p>智能替换只在<strong>品牌类陈列位和热销位</strong>上启用，先在拱北、横琴、大桥三家大门店落地。核心思路：<strong>建陈列的时候就给每个陈列柜贴上属性标签，缺货时按属性找"最像的商品"顶上。</strong></p>
+
+<h3>第一步：给陈列柜定属性</h3>
+<p>新建陈列时，每个陈列柜按柜内商品的共同特征标识为三种属性柜：</p>
+<table>
+<thead><tr><th style="width:20%">陈列柜属性</th><th style="width:26%">判定特征</th><th>替换时优先遵循的原则</th></tr></thead>
+<tbody>
+<tr><td><strong>品牌陈列柜</strong></td><td>柜内商品为同一品牌</td><td><strong>品牌优先</strong>——先找同品牌商品</td></tr>
+<tr><td><strong>高价值陈列柜</strong></td><td>柜内商品价格带相近（±20%以内）</td><td><strong>价格带优先</strong>——先找同价位商品</td></tr>
+<tr><td><strong>快销陈列柜</strong></td><td>柜内商品销量带相近（±20%以内）</td><td><strong>销量优先</strong>——先找卖得一样快的商品</td></tr>
+</tbody>
+</table>
+<p>柜组属性由五个维度共同定义：<span class="tag">同品类</span><span class="tag">同品牌</span><span class="tag">同价格带（20%以内）</span><span class="tag">同销量带（20%以内）</span><span class="tag">同供应商</span></p>
+
+<h3>第二步：按"属性优先、顺序递补"找替代品</h3>
+<p>不做复杂打分，采用简单明确的<strong>优先顺序原则</strong>：先找与陈列柜属性一致的商品；找不到，就按固定顺序逐项递补，直到找到第一个满足条件的商品。</p>
+<table>
+<thead><tr><th style="width:20%">陈列柜属性</th><th>替换顺序（从先到后）</th></tr></thead>
+<tbody>
+<tr><td>品牌陈列柜</td><td><strong>同品牌</strong> → 同品类 → 同价格带 → 同销量带 → 同供应商</td></tr>
+<tr><td>高价值陈列柜</td><td><strong>同价格带</strong> → 同品牌 → 同品类 → 同销量带 → 同供应商</td></tr>
+<tr><td>快销陈列柜</td><td><strong>同销量带</strong> → 同品牌 → 同品类 → 同价格带 → 同供应商</td></tr>
+</tbody>
+</table>
+<div class="callout">
+替代品怎么圈出来：把商品按<strong>销量排序</strong>，断货商品在排序中的<strong>上一个或下一个商品</strong>，就是"卖得和它差不多快"的自然候选——再按上面的顺序核对属性即可。<strong>规则简单、门店好理解、系统好实现。</strong>
+</div>
+
+<h2>五、替换怎么通知、怎么执行</h2>
+<p>整个流程<strong>免审核、全程留痕</strong>，门店一个动作完成，管理层只需知会：</p>
+<div class="flow">
+<div class="step"><b>库存为 0</b>门店监管仓或大仓库存归零</div>
+<div class="arrow">→</div>
+<div class="step"><b>PAD 消息</b>系统自动推送提醒到门店 PAD</div>
+<div class="arrow">→</div>
+<div class="step"><b>一键替换</b>门店按系统给出的替代商品一键上架</div>
+<div class="arrow">→</div>
+<div class="step"><b>OA 通知</b>替换结果自动推送采购部、营运部</div>
+<div class="arrow">→</div>
+<div class="step"><b>查看即可</b>不做审核；有问题线下沟通调整</div>
+</div>
+<ul>
+<li><strong>推送时机</strong>：门店监管仓或大仓库存为 0 时，系统自动推送 PAD 消息提醒门店；</li>
+<li><strong>执行方式</strong>：门店在 PAD 上一键替换，系统按第四节规则给出替代商品；</li>
+<li><strong>知会机制</strong>：替换完成后通过 OA 消息推送采购部和营运部，<strong>查看即可、不做审核</strong>，保证响应速度；</li>
+<li><strong>纠偏渠道</strong>：如果替换不合适，营运部线下与门店沟通调整陈列，不在线上设卡。</li>
 </ul>
 
-<h2>第 4 步 · 登记与恢复</h2>
-<p>替代动作落登记表（原商品/替代商品/位置/时间/得分/预计恢复日）；海蓝之谜到货当日 → 系统自动生成"恢复原陈列"任务，替代品退位，闭环。</p>
-<p class="callout"><strong>模型的全部智慧集中在第 1、2 步的规则上；第 3、4 步是执行纪律。</strong></p>
-
-<h1>四、冷启动怎么办（没有共购数据时）</h1>
-<p>模型不能等数据攒够才上线，回退链从"纯规则"平滑过渡到"行为信号"：</p>
-<table class="data">
-  <caption>表 2　冷启动回退链</caption>
-  <thead><tr><th>阶段</th><th>互替分数据状态</th><th>回退规则</th></tr></thead>
-  <tbody>
-    <tr><td>冷启动</td><td>无共购数据</td><td>同细类 → 名称功效关键词（香型/口味/成分词）→ 同陈列分类，给保守分（封顶 60% 权重）</td></tr>
-    <tr><td>爬坡期（1–3 个月）</td><td>共购对逐步积累</td><td>共购对可信的（小票对数 ≥ 阈值）用行为分，不足的继续走回退链</td></tr>
-    <tr><td>成熟期</td><td>覆盖头部 SKU</td><td>行为分为主，规则分仅兜底新品</td></tr>
-  </tbody>
-</table>
-<p>新品上架天然无共购 → 用类目默认分 + 上架后 2 周快速回填。</p>
-
-<h1>五、落地路线图（四个阶段，每阶段有验收标准）</h1>
-<table class="data">
-  <caption>表 3　四阶段落地路线图</caption>
-  <thead><tr><th>阶段</th><th>周期</th><th>内容</th><th>产出</th><th>验收标准</th></tr></thead>
-  <tbody>
-    <tr><td>阶段 1 · 规则引擎</td><td>1–2 周</td><td>只上硬过滤 + 静态打分（小类/用途/规格/价格带/动销），不依赖共购</td><td>每日《替代推荐单》推门店</td><td>断货位清单准确率 ≥ 95%；推荐单门店采纳率 ≥ 60%</td></tr>
-    <tr><td>阶段 2 · 行为信号叠加</td><td>2–4 周</td><td>跑批计算互替分中间表，叠加到打分权重</td><td>互替分覆盖头部 80% 动销 SKU</td><td>共购对覆盖率、推荐单采纳率对比阶段 1 有提升</td></tr>
-    <tr><td>阶段 3 · 灰度验证</td><td>4 周</td><td>选 2–3 家门店灰度，对照组门店维持人工操作；对比指标见第八节</td><td>灰度验证报告</td><td>灰度门店核心指标显著优于对照 → 放开</td></tr>
-    <tr><td>阶段 4 · 全量 + 策略运营</td><td>持续</td><td>策略配置表交给商品部/运营，按大类、季节、档期调权重；建立月度复盘机制</td><td>全量运行 + 月度复盘机制</td><td>—</td></tr>
-  </tbody>
+<h2>六、这套方案带来什么</h2>
+<table>
+<thead><tr><th style="width:28%">解决的现状问题</th><th>方案带来的改变</th></tr></thead>
+<tbody>
+<tr><td>陈列与实际对不上，看不出商品销售情况</td><td>缺货替换有规则、有记录，换的是什么、什么时候换的一清二楚，<strong>陈列始终反映真实销售</strong></td></tr>
+<tr><td>集团统一陈列图与门店卖货需求冲突</td><td>四类陈列各有章法：<strong>该统一的统一管，该灵活的放开管</strong>，矛盾不再出现</td></tr>
+<tr><td>三个部门职责交叉、说不清谁的责任</td><td>采购管源头、营运管常态、门店管快变，<strong>职责边界清晰</strong></td></tr>
+<tr><td>大门店热销位缺货后长时间空置</td><td>库存归零自动提醒、一键替换、免审核，<strong>当天完成补位，不空货架、不丢单</strong></td></tr>
+</tbody>
 </table>
 
-<h1>六、组织分工与推荐单流转</h1>
-<table class="data">
-  <caption>表 4　组织分工</caption>
-  <thead><tr><th>角色</th><th>职责</th></tr></thead>
-  <tbody>
-    <tr><td>数据组</td><td>建断货判定、互替分、推荐单三张产表；跑批调度；指标监控</td></tr>
-    <tr><td>商品部</td><td>维护策略配置（价格带宽、权重、品牌约束）；审核"替代转正式陈列"</td></tr>
-    <tr><td>门店/店长</td><td>确认推荐单（Top3 选一）、照单上架、一键登记；收到恢复任务后执行退位</td></tr>
-    <tr><td>运营</td><td>月度复盘替代成交率/模板一致率，反哺策略调整</td></tr>
-  </tbody>
-</table>
-<p>推荐单流转：系统生成 → 企业微信/工作端推送店长 → 10 秒确认 → 执行 → 系统登记。<strong>确认是门槛不是负担</strong>：超时未确认自动降级为"空间延展建议 + 缺货牌"，避免推荐单石沉大海。</p>
+<div class="foot-note">
+实施范围说明：智能替换先在拱北、横琴、大桥三家大门店的品牌位与热销位落地，跑顺后视情况推广；第一、三、四类陈列管理方式即日可按职责执行。
+</div>
 
-<h1>七、异常场景与兜底（必须提前定规则）</h1>
-<table class="data">
-  <caption>表 5　异常场景与兜底规则</caption>
-  <thead><tr><th>异常场景</th><th>兜底规则</th></tr></thead>
-  <tbody>
-    <tr><td>替代品也断货</td><td>打分时库存硬过滤已排除；运行中新断货 → 重新触发该位推荐</td></tr>
-    <tr><td>多个断货位抢同一替代品</td><td>按"断货位销售价值"排序分配（位置销量 × 剩余库存可摆天数），弱位降级走延展</td></tr>
-    <tr><td>品牌排他（相邻竞品冲突）</td><td>品牌约束配置项支持"同货架品牌互斥清单"，命中则扣分/排除</td></tr>
-    <tr><td>长期断货（≥3 天）</td><td>替代转正式陈列，商品部审批后更新陈列模板</td></tr>
-    <tr><td>促销档期 / 模板大改期</td><td>配置表设置生效时间窗，档期内锁定替代或不允许替代</td></tr>
-    <tr><td>替代品引发客诉/价签不符</td><td>价签联动：替代上架必须同步换价签，登记表校验价签变更记录</td></tr>
-  </tbody>
-</table>
-
-<h1>八、效果度量（模型好不好，看这四个数）</h1>
-<ol class="steps">
-  <li><strong>断货位空置时长</strong>：从断货判定到补位完成的平均小时数（核心效率指标）</li>
-  <li><strong>替代成交率</strong>：替代品在位期间日均销量 / 原品近 90 天日均销量（衡量"像不像"——CDT 打分准不准的直接证据）</li>
-  <li><strong>模板一致率</strong>：货架上非模板商品的占比下降幅度（替代登记 + 快照 diff 双口径）</li>
-  <li><strong>恢复及时率</strong>：原品到货后 24h 内恢复原陈列的比例（闭环健康度）</li>
-</ol>
-<p>灰度期用对照门店做差分，全量后按月追踪趋势并反哺权重配置。</p>
-
-<h1>九、实施边界与原则</h1>
-<ul class="plain">
-  <li><strong>先纪律后智能</strong>：阶段 1 的价值一半来自"禁止乱放 + 强制登记"，规则本身不用很聪明</li>
-  <li><strong>推荐不夺权</strong>：系统只推荐 Top3，最终由店长确认；"替代转正式"必须商品部审批</li>
-  <li><strong>价格带是红线</strong>：超 ±40% 一票否决，宁可空位挂缺货牌，不让顾客觉得"货不对板"</li>
-  <li><strong>监管合规硬约束不可配置</strong>：监管合规类规则不进策略表，写死在引擎里</li>
-</ul>
-<p class="warn"><strong>本文配套：</strong>规则明细与 SQL 骨架见《陈列断货替代品规则模型_CDT版》；Word 版（前 3 点）见《陈列断货智能替代模型方案.docx》。</p>
-
-<p class="footnote">陈列断货智能替代落地实施方案 · 2026 年 11 月 · 完整版（一至九节）</p>
-
+</div>
 </body>
 </html>
